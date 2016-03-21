@@ -12,6 +12,8 @@ class Ship {
     }
     if (counter === length){
       this.isDestroyed = true;
+      return true;
     }
+    return false;
   }
 }

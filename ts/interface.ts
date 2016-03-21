@@ -26,24 +26,58 @@ if(player1 && player2){
 });
 $('#shipBtn1').click(function(event){
   event.preventDefault();
-  var tile1 = new Tile($('#x1').val(), $('#y1').val());
+  var tile1 = new Tile(parseInt($('#x1').val()), parseInt($('#y1').val()));
+  tile1.fill();
+  var tail = currentGame.findTile(0, tile1);
+  tail.fill();
+  console.log(tail);
   currentGame.createShip(0, tile1);
-  var tile2 = new Tile($('#x2').val(), $('#y2').val());
-  var tile3 = new Tile($('#x2s').val(), $('#y2s').val());
-  currentGame.createShip(0, tile2, tile3);
-  var tile4 = new Tile($('#x3').val(), $('#y3').val());
-  var tile5 = new Tile($('#x3s').val(), $('#y3s').val());
-  var tile6 = new Tile($('#x3t').val(), $('#y3t').val());
-  currentGame.createShip(0, tile4, tile5, tile6);
+  // var tile2 = new Tile($('#x2').val(), $('#y2').val());
+  // var tile3 = new Tile($('#x2s').val(), $('#y2s').val());
+  // currentGame.createShip(0, tile2, tile3);
+  // var tile4 = new Tile($('#x3').val(), $('#y3').val());
+  // var tile5 = new Tile($('#x3s').val(), $('#y3s').val());
+  // var tile6 = new Tile($('#x3t').val(), $('#y3t').val());
+  // currentGame.createShip(0, tile4, tile5, tile6);
   $('#ship1').remove();
   $('#ship2').show();
 });
 $('#shipBtn2').click(function(event){
   event.preventDefault();
-  var x1 = $('#x1').val();
-  var y2 = $('#y1').val();
-  currentGame.createShip(0, x1, y2);
-  $('#ship1').remove();
-  $('#ship2').show();
+  var tile1 = new Tile(parseInt($('#x1').val()), parseInt($('#y1').val()));
+  tile1.fill();
+  var tail = currentGame.findTile(1, tile1);
+  tail.fill();
+  console.log(tail);
+  currentGame.createShip(1, tile1);
+  // var tile2 = new Tile($('#x2').val(), $('#y2').val());
+  // var tile3 = new Tile($('#x2s').val(), $('#y2s').val());
+  // currentGame.createShip(1, tile2, tile3);
+  // var tile4 = new Tile($('#x3').val(), $('#y3').val());
+  // var tile5 = new Tile($('#x3s').val(), $('#y3s').val());
+  // var tile6 = new Tile($('#x3t').val(), $('#y3t').val());
+  // currentGame.createShip(1, tile4, tile5, tile6);
+  $('#ship2').remove();
+  for(var tile of currentGame.players[0].board){
+    var current = 'n' + tile.x + tile.y ;
+    $('#board').append('<div class="tile" id="' + current +'">' + current + '</div>');
+    addListener(tile);
+  }
+  $('#board').show();
 });
 });
+
+var addListener = function(tile){
+$('.tile').last().click(function(){
+  console.log(tile);
+  var id: Tile = new Tile(tile.x, tile.y);
+  console.log(id);
+  if(currentGame.newTurn(0, id)){
+    $(this).text('HIT');
+  }
+  else {
+  $(this).text('MISS');
+  }
+  $(this).off();
+})
+}
