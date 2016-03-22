@@ -44,7 +44,6 @@ gulp.task('html', function(){
 });
 
 gulp.task('ts', function () {
-  console.log('hello');
   browserSync.reload();
 	return gulp.src('ts/*.ts')
 		.pipe(ts({
@@ -52,6 +51,10 @@ gulp.task('ts', function () {
 			out: 'app.js'
 		}))
 		.pipe(gulp.dest('build/js'));
+});
+
+gulp.task('build', ['ts', 'css', 'html'], function(){
+  browserSync.reload();
 });
 
 gulp.task('serve', ['ts', 'css', 'html'], function() {

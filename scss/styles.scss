@@ -1,5 +1,5 @@
 body{
-  background: lightgray;
+  background: pink;
 }
 .ship {
   display: none;
@@ -11,4 +11,15 @@ label{
   lost-column: 1/5;
   height: 100px;
   margin-bottom: 30px;
+}
+
+#board0{
+.tile{
+color: red;
+}
+}
+#board1{
+  .tile{
+  color: blue;
+  }
 }
