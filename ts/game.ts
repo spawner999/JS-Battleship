@@ -26,7 +26,7 @@ class Game {
       }
     }
   }
-  
+
   createBoard(player: number){
     console.log('Im creating');
     for(var tile of currentGame.players[player].board){
@@ -76,9 +76,7 @@ changeBoard(player: Player, next: Player, tile: Tile, msg: String){
     }
     else{
       this.changeBoard(player, nextUser, selected, 'HIT');
+      alert('GAME OVER');
     }
     }
   }
-
-
-}

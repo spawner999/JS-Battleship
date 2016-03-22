@@ -42,7 +42,6 @@ $('#shipBtn1').click(function(event){
 $('#shipBtn2').click(function(event){
   event.preventDefault();
   var tile1 = new Tile(parseInt($('#x1').val()), parseInt($('#y1').val()));
-  tile1.fill();
   var tail = currentGame.findTile(0, tile1);
   tail.fill();
   currentGame.createShip(0, tile1);
